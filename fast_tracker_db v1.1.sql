@@ -62,13 +62,19 @@ use fast_tracker_db;
    create table lotes(
    id int primary key auto_increment,
    volumen_l float(16),
-   peso_kg float (16)
+   peso_kg float (16),
+   created_at datetime,
+   updated_at datetime,
+   deleted_at datetime
    );
    
    create table paquete_contiene_lote(
    id_paquete int primary key not null,
    id_lote int not null,
    id_almacen int not null,
+   created_at datetime,
+   updated_at datetime,
+   deleted_at datetime,
    constraint fk_id_paquete foreign key (id_paquete) references paquetes (id),
    constraint fk_id_lote_p foreign key (id_lote) references lotes (id),
    constraint fk_id_almacen foreign key (id_lote) references almacenes (id)
@@ -97,6 +103,9 @@ use fast_tracker_db;
    id_marca_modelo int not null,
    volumen_max_l float not null,
    peso_max_kg float not null,
+   created_at datetime,
+   updated_at datetime,
+   deleted_at datetime,
    constraint fk_id_estado_c foreign key (id_estado_c) references estados_c(id),
    constraint fk_id_marca_modelo foreign key (id_marca_modelo) references marcas (id)
    );
@@ -110,45 +119,71 @@ use fast_tracker_db;
    create table usuarios(
    id int primary key auto_increment,
    nombre_de_usuario varchar(50) not null,
-   contrasenia varchar(25) not null
+   contrasenia varchar(25) not null,
+   created_at datetime,
+   updated_at datetime,
+   deleted_at datetime
    );
    
    create table telefonos_usuarios(
    id_usuarios int primary key not null,
    telefono varchar(15),
+   created_at datetime,
+   updated_at datetime,
+   deleted_at datetime,
    constraint fk_id_usuarios_t foreign key (id_usuarios) references usuarios(id)
    );
    
    create table mail_usuarios(
    id_usuarios int primary key not null,
    mail varchar(50),
+   created_at datetime,
+   updated_at datetime,
+   deleted_at datetime,
    constraint fk_id_usuarios_m foreign key (id_usuarios) references usuarios(id)
    );
    
    create table choferes(
    id_usuarios int primary key not null,
    licencia_de_conducir varchar (10), 
+   created_at datetime,
+   updated_at datetime,
+   deleted_at datetime,
    constraint fk_id_usuarios_c foreign key (id_usuarios) references usuarios(id)
   );
   
    create table almaceneros(
    id_usuarios int primary key not null,
+   created_at datetime,
+   updated_at datetime,
+   deleted_at datetime,
    constraint fk_id_usuarios_a foreign key (id_usuarios) references usuarios(id)
   );
   
   create table clientes(
    id_usuarios int primary key not null,
+   created_at datetime,
+   updated_at datetime,
+   deleted_at datetime,
    constraint fk_id_usuarios_cl foreign key (id_usuarios) references usuarios(id)
   );
   
-  create table administradores(
-   id_usuarios int primary key not null,
-   constraint fk_id_usuarios_admin foreign key (id_usuarios) references usuarios(id)
-  );
+  CREATE TABLE administradores (
+    id_usuarios INT PRIMARY KEY NOT NULL,
+    created_at datetime,
+    updated_at datetime,
+    deleted_at datetime,
+    CONSTRAINT fk_id_usuarios_admin FOREIGN KEY (id_usuarios)
+        REFERENCES usuarios (id)
+);
   
   create table chofer_conduce_camion(
   id_chofer int primary key not null,
   id_camion int not null,
   fecha_y_hora datetime,
+   created_at datetime,
+   updated_at datetime,
+   deleted_at datetime,
   constraint fk_id_chofer foreign key (id_chofer) references choferes(id_usuarios)
   );
+  
