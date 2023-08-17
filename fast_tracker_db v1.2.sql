@@ -52,6 +52,7 @@ use fast_tracker_db;
         constraint fk_id_lugar_entrega_p foreign key (id_lugar_entrega) references lugares_entrega(id),
         constraint fk_id_producto foreign key (id_producto) references productos(id)
     );
+    
     create table almacenes(
     id int primary key auto_increment,
     id_lugar_entrega int not null,
@@ -77,9 +78,9 @@ use fast_tracker_db;
    deleted_at datetime,
    constraint fk_id_paquete foreign key (id_paquete) references paquetes (id),
    constraint fk_id_lote_p foreign key (id_lote) references lotes (id),
-   constraint fk_id_almacen foreign key (id_lote) references almacenes (id)
+   constraint fk_id_almacen foreign key (id_almacen) references almacenes (id)
    );
-   
+  
    create table modelos(
    id int primary key auto_increment,
    modelo varchar(50) not null
@@ -124,34 +125,37 @@ use fast_tracker_db;
    updated_at datetime,
    deleted_at datetime
    );
-   
+
    create table telefonos_usuarios(
-   id_usuarios int primary key not null,
+   id_usuarios int not null,
    telefono varchar(15),
    created_at datetime,
    updated_at datetime,
    deleted_at datetime,
+   constraint primary key (id_usuarios, telefono),
    constraint fk_id_usuarios_t foreign key (id_usuarios) references usuarios(id)
    );
-   
+  
    create table mail_usuarios(
-   id_usuarios int primary key not null,
+   id_usuarios int not null,
    mail varchar(50),
    created_at datetime,
    updated_at datetime,
    deleted_at datetime,
+   constraint primary key (id_usuarios, mail),
    constraint fk_id_usuarios_m foreign key (id_usuarios) references usuarios(id)
    );
    
    create table choferes(
    id_usuarios int primary key not null,
-   licencia_de_conducir varchar (10), 
+   licencia_de_conducir varchar (10) unique, 
    created_at datetime,
    updated_at datetime,
    deleted_at datetime,
    constraint fk_id_usuarios_c foreign key (id_usuarios) references usuarios(id)
   );
-  
+ 
+ 
    create table almaceneros(
    id_usuarios int primary key not null,
    created_at datetime,
@@ -179,7 +183,7 @@ use fast_tracker_db;
   
   create table chofer_conduce_camion(
   id_chofer int primary key not null,
-  id_camion int not null,
+  id_camion int not null unique,
   fecha_y_hora datetime,
    created_at datetime,
    updated_at datetime,
