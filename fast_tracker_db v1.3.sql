@@ -114,9 +114,10 @@ use fast_tracker_db;
    create table camion_lleva_lote(
    id_lote int primary key not null,
    matricula varchar(10) not null,
-   constraint fk_id_lote_c foreign key (id_lote) references lotes(id)
+   constraint fk_id_lote_c foreign key (id_lote) references lotes(id),
+   constraint fk_matricula_c foreign key (matricula)references camiones(matricula)
    );
-   
+
    create table usuarios(
    id int primary key auto_increment,
    nombre_de_usuario varchar(50) not null unique,
@@ -183,11 +184,12 @@ use fast_tracker_db;
   
   create table chofer_conduce_camion(
   id_chofer int primary key not null,
-  id_camion int not null unique,
+  matricula_camion varchar(10) not null unique,
   fecha_y_hora datetime,
    created_at datetime,
    updated_at datetime,
    deleted_at datetime,
-  constraint fk_id_chofer foreign key (id_chofer) references choferes(id_usuarios)
+  constraint fk_id_chofer foreign key (id_chofer) references choferes(id_usuarios),
+  constraint fk_matricula_camion foreign key (matricula_camion) references camiones(matricula)
   );
-  
+
