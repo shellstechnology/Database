@@ -119,7 +119,7 @@ use fast_tracker_db;
    
    create table usuarios(
    id int primary key auto_increment,
-   nombre_de_usuario varchar(50) not null,
+   nombre_de_usuario varchar(50) not null unique,
    contrasenia varchar(25) not null,
    created_at datetime,
    updated_at datetime,
@@ -128,7 +128,7 @@ use fast_tracker_db;
 
    create table telefonos_usuarios(
    id_usuarios int not null,
-   telefono varchar(15),
+   telefono varchar(15) unique,
    created_at datetime,
    updated_at datetime,
    deleted_at datetime,
@@ -138,7 +138,7 @@ use fast_tracker_db;
   
    create table mail_usuarios(
    id_usuarios int not null,
-   mail varchar(50),
+   mail varchar(50) unique,
    created_at datetime,
    updated_at datetime,
    deleted_at datetime,
