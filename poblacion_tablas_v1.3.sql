@@ -4,11 +4,6 @@ insert into monedas (moneda) values ('pesos uruguayos'), ('dolares') ,('reales')
 /* Inserts para pruebas unitarias en monedas */
 insert into monedas (id, moneda) values (47,'listar'),(42,'modificar'),(74,'eliminar');
 
-insert into productos values (1, 'quesos cremosos', 60, 100, 1);
-insert into productos values (2, 'pan artesanal', 100, 20, 1);
-insert into productos values (3,'mouse logitech',700,5,1);
-insert into productos values (4,'teclado razer',2000,10,1);
-
 /* Insert para las pruebas unitarias en productos */
 insert into productos values (47,'Proyecto2023',9999,1,1);
 insert into productos values (74,'proyecto 2',9999,1,1);
@@ -94,4 +89,37 @@ insert into clientes (id_usuarios) values (47), (42), (74);
 insert into administradores (id_usuarios) values (47), (42), (74); 
 
 /*insers pruebas unitarias chofer conduce camion */
-insert into chofer_conduce_camion (id_chofer,id_camion) values (47,47),(42,42),(74,74);
+insert into chofer_conduce_camion (id_chofer,matricula_camion) values (47,'a47a'),(42,'a42a'),(74,'a74a');
+
+/* Insert para la consulta indicada por el docente*/
+
+insert into productos values (10, 'quesos cremosos', 60, 100, 1);
+insert into productos values (11, 'pan artesanal', 100, 20, 1);
+insert into productos values (12,'Jamon la constancia',700,5,1);
+insert into productos values (13,'tomate fresco',2000,10,1);
+
+insert into paquetes
+(id,nombre, volumen_l, peso_kg, id_estado_p, id_caracteristica_paquete, id_producto, id_lugar_entrega, nombre_destinatario, nombre_remitente) values
+ (100,'quesos cremosos',100.2,100.1,1,1,10,1,'super de la esquina',' fiambreria gorillaz'),
+ (101,'pan artesanal',100.1,100.1,1,1,11,1,'super de la esquina','fiambreria gorillaz'),
+ (102,'Jamon la constancia',100,100,1,1,12,1,'super de la esquina','fiambreria gorillaz'),
+ (103,'tomate fresco',100,100,1,1,13,1,'super de la esquina','fiambreria gorillaz');
+ 
+ 
+ insert into lotes 
+ (id, volumen_l, peso_kg) values 
+ (100, 10, 10);
+
+ insert into paquete_contiene_lote
+ (id_paquete, id_lote, id_almacen) values 
+ (100,100,47),
+ (101,100,47),
+ (102,100,47),
+ (103,100,47);
+ 
+ insert into camion_lleva_lote 
+ (id_lote,matricula) values 
+ (100,'a47a');
+ 
+
+ 
