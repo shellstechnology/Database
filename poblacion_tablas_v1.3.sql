@@ -25,9 +25,6 @@ insert into estados_p (descripcion_estado_p) values ('en almacen'), ('en camino'
 /*insers pruebas unitarias estados_p*/
 insert into estados_p (id, descripcion_estado_p) values (47,'estado p listar'), (42,'estado p Modificar'), (74,'estado p eliminar');
 
-insert into paquetes (nombre, volumen_l, peso_kg, id_estado_p, id_caracteristica_paquete, id_producto, id_lugar_entrega, nombre_destinatario, nombre_remitente) values 
-('queso cremoco',0.50,0.60,1,1,1,2,'matias',' elmati2');
-
 /* inserts para pruebas unitarias en paquete*/
 insert into paquetes (id, nombre, volumen_l, peso_kg, id_estado_p, id_caracteristica_paquete, id_producto, id_lugar_entrega, nombre_destinatario, nombre_remitente) values 
 (47,'proyecto2023',9.9,9.9,1,4,47,2,'shells tech', 'shells tech tambien'), (74,'paquete a eliminar',9.9,9.9,1,4,47,2,'pseudoshell', 'shell al cuadrado'),

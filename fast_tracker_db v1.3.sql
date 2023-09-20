@@ -3,7 +3,10 @@ use fast_tracker_db;
 
 	create table monedas(
     id int primary key auto_increment,
-    moneda varchar(30)
+    moneda varchar(30),
+	created_at datetime,
+	updated_at datetime,
+	deleted_at datetime
     );
     
     create table productos(
@@ -12,24 +15,36 @@ use fast_tracker_db;
     precio float(8) not null,
     stock int not null,
     id_moneda int not null,
-    constraint fk_id_moneda foreign key (id_moneda) references monedas(id)
+    constraint fk_id_moneda foreign key (id_moneda) references monedas(id),
+	created_at datetime,
+    updated_at datetime,
+	deleted_at datetime
     );
     
     create table caracteristicas(
     id int primary key auto_increment,
-    descripcion_caracteristica varchar(50) not null
+    descripcion_caracteristica varchar(50) not null,
+	created_at datetime,
+    updated_at datetime,
+	deleted_at datetime
     );
     
     create table lugares_entrega(
     id int primary key auto_increment,
     longitud float(16) not null,
     latitud float(16) not null,
-    direccion varchar(100)
+    direccion varchar(100),
+	created_at datetime,
+    updated_at datetime,
+	deleted_at datetime
     );
     
     create table estados_p(
     id int primary key auto_increment,
-    descripcion_estado_p varchar(100)
+    descripcion_estado_p varchar(100),
+	created_at datetime,
+    updated_at datetime,
+	deleted_at datetime
     );
     
     CREATE TABLE paquetes(
@@ -56,6 +71,9 @@ use fast_tracker_db;
     create table almacenes(
     id int primary key auto_increment,
     id_lugar_entrega int not null,
+	created_at datetime,
+    updated_at datetime,
+	deleted_at datetime,
     constraint fk_id_lugar_entrega_a foreign key (id_lugar_entrega) references lugares_entrega(id)
     );
    
@@ -83,19 +101,28 @@ use fast_tracker_db;
   
    create table modelos(
    id int primary key auto_increment,
-   modelo varchar(50) not null
+   modelo varchar(50) not null,
+	created_at datetime,
+    updated_at datetime,
+	deleted_at datetime
    );
    
    create table marcas(
    id int primary key auto_increment,
    marca varchar (50) not null,
    id_modelo int not null,
+	created_at datetime,
+    updated_at datetime,
+	deleted_at datetime,
    constraint fk_id_modelo foreign key (id_modelo) references modelos(id)
    );
    
    create table estados_c(
    id int primary key auto_increment,
-   descripcion_estado_c varchar (100) not null
+   descripcion_estado_c varchar (100) not null,
+	created_at datetime,
+    updated_at datetime,
+	deleted_at datetime
    );
    
    create table camiones(
@@ -115,6 +142,9 @@ use fast_tracker_db;
    id_lote int primary key not null,
    matricula varchar(10) not null,
    constraint fk_id_lote_c foreign key (id_lote) references lotes(id),
+	created_at datetime,
+    updated_at datetime,
+	deleted_at datetime,
    constraint fk_matricula_c foreign key (matricula)references camiones(matricula)
    );
 
