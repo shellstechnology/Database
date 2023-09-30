@@ -32,7 +32,7 @@ insert into paquetes (id, nombre, volumen_l, peso_kg, id_estado_p, id_caracteris
 (10,'tuercas',9.9,9.9,1,4,7,2,'a', 'b'),
 (47,'proyecto2023',9.9,9.9,1,4,47,2,'shells tech', 'shells tech tambien'), (74,'paquete a eliminar',9.9,9.9,1,4,47,2,'pseudoshell', 'shell al cuadrado'),
 (42,'paquete a modificar', 9.9,9.9,1,4,47,2,'shells tech', 'shells tech la venganza del programador');
-select * from paquetes;
+
 
 
 /* inserts para pruebas unitarias de Lotes*/
@@ -40,7 +40,7 @@ insert into lotes (id, volumen_l, peso_kg) values (1, 10, 10), (2,20,20);
 insert into lotes (id, volumen_l, peso_kg) values (47, 47, 47);
 insert into lotes (id, volumen_l, peso_kg) values (42,42,42),(74,74,74);
 insert into lotes (id, volumen_l, peso_kg) values (20,20,20);
-select * from lotes;
+
 
 /* inserts para pruebas unitarias de almacenes */
 insert into almacenes (id, id_lugar_entrega) values (47,3);
@@ -55,16 +55,16 @@ insert into paquete_contiene_lote (id_paquete, id_lote, id_almacen) values (42,4
 insert into paquete_contiene_lote (id_paquete, id_lote, id_almacen) values (74,74,47);
 
 /* inserts pruebas unitarias modelo camion*/
-insert into modelos (id, modelo) values (47,'modelo listar'), (42, 'modelo update'), (74,'modelo eliminar');
+insert into marcas (id, marca) values (47,'marca listar'), (42, 'marca update'), (74,'marca eliminar');
 
 /* insers pruebas unitarias marca camion*/
-insert into marcas (id, marca, id_modelo) values (47,'marca listar',47), (42,'marca modificar',42) , (74,'marca eliminar',74);
+insert into modelos (id, modelo, id_marca) values (47,'modelo listar',47), (42,'modelo modificar',42) , (74,'modelo eliminar',74);
 
 /*insers pruebas unitarias caracteristica camion*/
 insert into estados_c (id, descripcion_estado_c) values (47,'estado c listar'), (42,'estados c modificar'), (74,'estados c eliminar');
 
 /*insers pruebas unitarias camiones*/
-insert into camiones (matricula, id_estado_c, id_marca_modelo, volumen_max_l, peso_max_kg) values ('a20a',47,47,80,80), ('a47a',47,47,99,99), ('a42a',42,42,99,99), ('a74a',74,74,99,99);
+insert into camiones (matricula, id_estado_c, id_modelo_marca, volumen_max_l, peso_max_kg) values ('a20a',47,47,80,80), ('a47a',47,47,99,99), ('a42a',42,42,99,99), ('a74a',74,74,99,99);
 
 /* insert pruebas unitarias camion lleva lote */
 insert into camion_lleva_lote (id_lote,matricula) values (47,'a47a'), (42,'a42a'), (74,'a74a');
@@ -124,5 +124,15 @@ insert into paquetes
  (id_lote,matricula) values 
  (100,'a47a');
  
-
  
+ 
+ insert into paquetes (id, nombre, volumen_l, peso_kg, id_estado_p, id_caracteristica_paquete, id_producto, id_lugar_entrega, nombre_destinatario, nombre_remitente) values 
+(400,'tuercas',9.9,9.9,1,4,7,2,'a', 'b'), (500,'tuercas',9.9,9.9,1,4,7,2,'a', 'b'),(600,'tuercas',9.9,9.9,1,4,7,2,'a', 'b'),(700,'tuercas',9.9,9.9,1,4,7,2,'a', 'b');
+ 
+insert into lotes (id, volumen_l, peso_kg) values (86,86,86);
+insert into lotes (id, volumen_l, peso_kg) values (140,140,140);
+insert into paquete_contiene_lote (id_paquete, id_lote, id_almacen) values (400,86,47), (500,86,47);
+ insert into paquete_contiene_lote (id_paquete, id_lote, id_almacen) values (600,140,47), (700,140,47);
+  insert into camion_lleva_lote 
+ (id_lote,matricula) values 
+ (86,'a42a'), (140,'a42a');
