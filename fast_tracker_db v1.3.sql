@@ -102,22 +102,22 @@ use fast_tracker_db;
    constraint fk_id_almacen foreign key (id_almacen) references almacenes (id)
    );
 
-   create table modelos(
+   create table marcas(
    id int primary key auto_increment,
-   modelo varchar(50) not null,
+   marca varchar(50) not null,
 	created_at datetime,
     updated_at datetime,
 	deleted_at datetime
    );
 
-   create table marcas(
+   create table modelos(
    id int primary key auto_increment,
-   marca varchar (50) not null,
-   id_modelo int not null,
+   modelo varchar (50) not null,
+   id_marca int not null,
 	created_at datetime,
     updated_at datetime,
 	deleted_at datetime,
-   constraint fk_id_modelo foreign key (id_modelo) references modelos(id)
+   constraint fk_id_marca foreign key (id_marca) references marcas(id)
    );
   
    create table estados_c(
@@ -131,14 +131,14 @@ use fast_tracker_db;
    create table camiones(
    matricula varchar(10) primary key not null,
    id_estado_c int not null,
-   id_marca_modelo int not null,
+   id_modelo_marca int not null,
    volumen_max_l float not null,
    peso_max_kg float not null,
    created_at datetime,
    updated_at datetime,
    deleted_at datetime,
    constraint fk_id_estado_c foreign key (id_estado_c) references estados_c(id),
-   constraint fk_id_marca_modelo foreign key (id_marca_modelo) references marcas (id)
+   constraint fk_id_modelo_marca foreign key (id_modelo_marca) references modelos (id)
    );
 
    create table camion_lleva_lote(
