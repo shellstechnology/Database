@@ -70,13 +70,12 @@ insert into camiones (matricula, id_estado_c, id_modelo_marca, volumen_max_l, pe
 insert into camion_lleva_lote (id_lote,matricula) values (47,'a47a'), (42,'a42a'), (74,'a74a');
 
 /*insert pruebas unitarias usuarios */ 
-insert into usuarios (id, nombre_de_usuario, contrasenia) values (10,'toreto','ee'), (20,'choferprueba','dd'), (47,'usuario a listar','aaa'), (42,'usuario a modificar','bb'), (74,'usuario a eliminar','cc');
+insert into users (id, name, password, email) values (10,'toreto','1234','toreto@carrara'), (20,'choferprueba','1234','prueba@mail'), (47,'usuario a listar','1234','lista@mail'), 
+(42,'usuario a modificar','1234','modificar@mail'), (74,'usuario a eliminar','1234','eliminar@mail');
 
 /* inserts pruebas unitarias telefonos usuarios*/
 insert into telefonos_usuarios (id_usuarios, telefono) values (47,'tel list'), (42,'tel mod'), (74,'tel del');
 
-/* insers pruebas unitarias mail usuarios*/ 
-insert into mail_usuarios (id_usuarios,mail) values (10, 'torito@carrera'), (20, 'chofer@mail'), (47,'listar@mail.com'), (42,'modificar@mail.com'), (74,'eliminar@mail.com');
 
 /* inserts pruebas unitarias choferes*/
 insert into choferes (id_usuarios, licencia_de_conducir) values (10,'ninguna'), (20,'licencia'), (47,'lic list'), (42,'lic mod'), (74,'lic del');

@@ -10,7 +10,7 @@ use fast_tracker_db;
 	updated_at datetime,
 	deleted_at datetime
     );
-  
+
     create table productos(
     id int primary key auto_increment,
     nombre varchar (50) not null,
@@ -31,6 +31,8 @@ use fast_tracker_db;
 	deleted_at datetime
     );
     
+
+    
     create table lugares_entrega(
     id int primary key auto_increment,
     longitud float(16) not null,
@@ -48,7 +50,8 @@ use fast_tracker_db;
     updated_at datetime,
 	deleted_at datetime
     );
-    
+
+ 
     CREATE TABLE paquetes(
         id int primary key auto_increment,
         nombre varchar(50) not null,
@@ -60,7 +63,7 @@ use fast_tracker_db;
         id_lugar_entrega int not null,
         nombre_destinatario varchar(100) not null,
         nombre_remitente varchar(100) not null,
-        fecha_de_entrega datetime,
+        fecha_de_entrega datetime DEFAULT null,
         created_at datetime,
         updated_at datetime,
         deleted_at datetime,
@@ -89,7 +92,7 @@ use fast_tracker_db;
    updated_at datetime,
    deleted_at datetime
    );
-  
+
    create table paquete_contiene_lote(
    id_paquete int primary key not null,
    id_lote int not null,
@@ -120,6 +123,7 @@ use fast_tracker_db;
    constraint fk_id_marca foreign key (id_marca) references marcas(id)
    );
   
+
    create table estados_c(
    id int primary key auto_increment,
    descripcion_estado_c varchar (100) not null,
@@ -151,14 +155,17 @@ use fast_tracker_db;
    constraint fk_matricula_c foreign key (matricula)references camiones(matricula)
    );
 
-   create table usuarios(
-   id int primary key auto_increment,
-   nombre_de_usuario varchar(50) not null unique,
-   contrasenia varchar(25) not null,
-   created_at datetime,
-   updated_at datetime,
-   deleted_at datetime
-   );
+  create table users (
+    id int unsigned auto_increment primary key,
+    name varchar(255) unique not null,
+    email varchar(255) unique not null,
+    email_verified_at timestamp null,
+    password varchar(255) not null,
+    remember_token varchar(100) null,
+    created_at timestamp default current_timestamp,
+    updated_at timestamp default current_timestamp on update current_timestamp,
+    deleted_at timestamp null
+);
 
 
    create table telefonos_usuarios(
@@ -168,7 +175,7 @@ use fast_tracker_db;
    updated_at datetime,
    deleted_at datetime,
    constraint primary key (id_usuarios, telefono),
-   constraint fk_id_usuarios_t foreign key (id_usuarios) references usuarios(id)
+   constraint fk_id_usuarios_t foreign key (id_usuarios) references users(id)
    );
 
    create table mail_usuarios(
@@ -178,7 +185,7 @@ use fast_tracker_db;
    updated_at datetime,
    deleted_at datetime,
    constraint primary key (id_usuarios, mail),
-   constraint fk_id_usuarios_m foreign key (id_usuarios) references usuarios(id)
+   constraint fk_id_usuarios_m foreign key (id_usuarios) references users(id)
    );
  
    create table choferes(
@@ -187,7 +194,7 @@ use fast_tracker_db;
    created_at datetime,
    updated_at datetime,
    deleted_at datetime,
-   constraint fk_id_usuarios_c foreign key (id_usuarios) references usuarios(id)
+   constraint fk_id_usuarios_c foreign key (id_usuarios) references users(id)
   );
  
  
@@ -196,7 +203,7 @@ use fast_tracker_db;
    created_at datetime,
    updated_at datetime,
    deleted_at datetime,
-   constraint fk_id_usuarios_a foreign key (id_usuarios) references usuarios(id)
+   constraint fk_id_usuarios_a foreign key (id_usuarios) references users(id)
   );
 
   create table clientes(
@@ -204,7 +211,7 @@ use fast_tracker_db;
    created_at datetime,
    updated_at datetime,
    deleted_at datetime,
-   constraint fk_id_usuarios_cl foreign key (id_usuarios) references usuarios(id)
+   constraint fk_id_usuarios_cl foreign key (id_usuarios) references users(id)
   );
 
   CREATE TABLE administradores (
@@ -213,7 +220,7 @@ use fast_tracker_db;
     updated_at datetime,
     deleted_at datetime,
     CONSTRAINT fk_id_usuarios_admin FOREIGN KEY (id_usuarios)
-        REFERENCES usuarios (id)
+        REFERENCES users (id)
 );
 
   create table chofer_conduce_camion(
