@@ -83,7 +83,6 @@ use fast_tracker_db;
     );
     
 
-   /* hace falta agregar el calculo automatico que dijo el profe :D*/
    create table lotes(
    id int primary key auto_increment,
    volumen_l float(16),
@@ -156,7 +155,7 @@ use fast_tracker_db;
    );
 
   create table users (
-    id int unsigned auto_increment primary key,
+    id int auto_increment primary key,
     name varchar(255) unique not null,
     email varchar(255) unique not null,
     email_verified_at timestamp null,
@@ -178,15 +177,6 @@ use fast_tracker_db;
    constraint fk_id_usuarios_t foreign key (id_usuarios) references users(id)
    );
 
-   create table mail_usuarios(
-   id_usuarios int not null,
-   mail varchar(50) unique,
-   created_at datetime,
-   updated_at datetime,
-   deleted_at datetime,
-   constraint primary key (id_usuarios, mail),
-   constraint fk_id_usuarios_m foreign key (id_usuarios) references users(id)
-   );
  
    create table choferes(
    id_usuarios int primary key not null,
@@ -234,7 +224,6 @@ use fast_tracker_db;
   constraint fk_matricula_camion foreign key (matricula_camion) references camiones(matricula)
   );
 
-
 DELIMITER //
 
 CREATE TRIGGER ingresar_peso_lote
@@ -278,3 +267,4 @@ BEGIN
 END;
 //
 DELIMITER ;
+select * from lotes;
